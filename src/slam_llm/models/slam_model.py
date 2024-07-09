@@ -152,9 +152,9 @@ def setup_llm(train_config, model_config, **kwargs):
             llama_config.use_cache = use_cache
             # with torch.device("meta"):
             if "aya" in model_config.llm_name.lower():
-                model = AutoModelForSeq2SeqLM(llama_config)
+                model = AutoModelForSeq2SeqLM.from_config(llama_config)
             else:
-                model = AutoModelForCausalLM(llama_config) #(FIX:MZY): torch 2.0.1 does not support `meta`
+                model = AutoModelForCausalLM.from_config(llama_config) #(FIX:MZY): torch 2.0.1 does not support `meta`
 
     else:
         if "vallex" in model_config.llm_name.lower():
